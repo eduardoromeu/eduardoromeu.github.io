@@ -1,0 +1,15 @@
+{
+  "short_name": "My GH Page",
+  "name": "eduardoromeu.github.io",
+  "icons": [
+    {
+      "src": "https://avatars.githubusercontent.com/u/84694578?v=4",
+      "type": "image/png",
+      "sizes": "460x460"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
