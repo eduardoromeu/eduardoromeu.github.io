@@ -69,8 +69,15 @@ export default function BusinessCard() {
                 </Modal.Header>
                 <Modal.Body>
                     <InputGroup>
-                        <Button variant="outline-secondary" onClick={() => { document.querySelector("#embedInput").select(); document.execCommand("copy"); }}>Copy</Button>
-                        <FormControl type="text" id="embedInput" value={`<iframe src="${window.location.hostname}/card" title="${user.login}'s Card">`} />
+                        <Button variant="outline-secondary" onClick={() => {
+                            if(navigator.clipboard){
+                                navigator.clipboard.writeText(document.querySelector("#embedInput").value).then(() => {
+                                    document.querySelector("#embedInput").select();
+                                });
+                            } else { document.execCommand("copy"); } 
+                        }}
+                        >Copy</Button>
+                        <FormControl type="text" id="embedInput" value={`<embed type="text/html" src="https://eduardoromeu.github.io/#/card" title="${user.login}'s Card">`} />
                     </InputGroup>
                 </Modal.Body>
                 <Modal.Footer>
