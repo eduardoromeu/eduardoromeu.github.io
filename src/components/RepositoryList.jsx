@@ -8,7 +8,6 @@ export default function RepositoryList(props) {
 
     useEffect(() => {
         setRepos(props.repos)
-        // if(props.repos !== undefined) console.log(props.repos);
     }, [props]);
     
     if (repos === undefined) {
@@ -23,7 +22,6 @@ export default function RepositoryList(props) {
         if(props.selectedTopics === undefined) return true;
         return cardTopics.includes(props.selectedTopics);
     }
-    // console.log(props.selectedTopics);
     
     return (
         <Container fluid>

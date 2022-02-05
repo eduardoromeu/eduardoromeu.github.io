@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import './App.css';
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import { useLocation } from "react-router";
 
+import PageContainer from './components/PageContainer';
 import Home from './pages/Home';
 import Header from './components/Header';
 import Repos from './pages/Repos';
@@ -10,24 +12,23 @@ import NotFound from './pages/NotFound';
 
 function App() {
 
+  if(useLocation().pathname === '/card'){
+    return(
+      <BusinessCard />
+    );
+  }
+
   return (
-      <Router>
-        <Header />
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/repos">
-            <Repos />
-          </Route>
-          <Route path="/card">
-            <BusinessCard />
-          </Route>
-          <Route>
-            <NotFound />
-          </Route>
-        </Switch>
-      </Router>
+    <Fragment>
+      <Header />
+        <PageContainer>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/repos" element={<Repos />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </PageContainer>
+    </Fragment>
   );
 }
 

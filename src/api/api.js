@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-    baseURL : "https://api.github.com/users/eduardoromeu"
+    baseURL : "https://api.github.com/users/"
 })
 
 const getSomething = async(setSomething, path) => {
@@ -10,14 +10,14 @@ const getSomething = async(setSomething, path) => {
         setSomething(res.data);
     } catch(err) {
         console.log(err);
-        alert("Connection Error at api.js");
+        alert(" Connection Error at api.js. \r\n See console for more details.");
     }
 }
 
 export const getRepos = (setRepos) => {
-    getSomething(setRepos, '/repos');
+    getSomething(setRepos, 'eduardoromeu/repos');
 }
 
 export const getUser = async(setUser) => {
-    getSomething(setUser, '');
+    getSomething(setUser, 'eduardoromeu');
 }

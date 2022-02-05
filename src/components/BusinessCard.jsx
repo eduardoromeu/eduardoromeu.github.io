@@ -1,25 +1,36 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getUser } from "../api/api";
-import { Card, Button, Spinner, Image, Row, Col, Modal, InputGroup, FormControl } from 'react-bootstrap';
+import { Card, Button, Spinner, Image, Row, Col, Modal, InputGroup, FormControl, Container, Form } from 'react-bootstrap';
 import { useLocation } from 'react-router';
 
-export default function BusinessCard() {
+export default function BusinessCard(props) {
 
     const [user, setUser] = useState();
     const [theme, setTheme] = useState("dark");
     const [bgTheme, setBgTheme] = useState("dark");
     const [textTheme, setTextTheme] = useState("light");
+    const [height, setHeight] = useState("100vh");
+    const [classes, setClasses] = useState(props.className);
     const [showEmbedModal, setShowEmbedModal] = useState(false);
     const location = useLocation();
 
     useEffect(() => {
-        const searchTheme = new URLSearchParams(location.search).get('theme')
+        setClasses(props.className);
+    }, [props.className]);
+
+    useEffect(() => {
+        const searchTheme = new URLSearchParams(location.search).get('theme');
+        const searchHeight = new URLSearchParams(location.search).get('height');
         getUser(setUser);
         setTheme(() => {
             if (searchTheme !== 'light' && searchTheme !== 'dark') return theme;
             else return searchTheme;
         });
+        setHeight(() => {
+            return (searchHeight === undefined) ? "100%" : searchHeight;
+        })
     }, []);
+
 
     useEffect(() => {
         setBgTheme((theme === "dark") ? "dark" : "light");
@@ -28,7 +39,7 @@ export default function BusinessCard() {
 
     if (user === undefined) {
         return (
-            <Card bg={bgTheme} text={textTheme}>
+            <Card bg={bgTheme} text={textTheme} className={classes} style={{ height: `${height}` }}    >
                 <Card.Body className="d-flex justify-content-center">
                     <Spinner animation="border" role="status" />
                 </Card.Body>
@@ -36,20 +47,38 @@ export default function BusinessCard() {
         );
     }
 
+    function copyEmbed() {
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(document.querySelector("#embedInput").value).then(() => {
+                document.querySelector("#embedInput").select();
+            });
+        } else { document.execCommand("copy"); }
+    }
+
+    function changeEmbedTheme(theme){
+        const embedInput = document.getElementById("embedInput");
+        if(theme === "light") {
+            embedInput.value = `<embed type="text/html" src="https://eduardoromeu.github.io/#/card?height=100vh&theme=light" title="${user.login}'s Card">`;
+        } else {
+            embedInput.value = `<embed type="text/html" src="https://eduardoromeu.github.io/#/card?height=100vh&theme=dark" title="${user.login}'s Card">`;
+        }
+        
+    }
+
     return (
-        <Fragment>
-            <Card bg={bgTheme} text={textTheme}>
+        <Container fluid className={`p-0 bg-${bgTheme}`} style={{ height: `${height}` }}>
+            <Card bg={bgTheme} text={textTheme} className={`${classes}`} >
                 <Card.Header className="d-flex justify-content-between">
-                    <Card.Title as="a" href={user.html_url} className="d-inline text-muted h5 text-decoration-none">
+                    <Card.Title as="a" href={user.html_url} className={`d-inline h5 text-${textTheme} text-decoration-none`}>
+                        <i className="me-2 bi bi-github"></i>
                         {user.login}
-                        <i className="ms-2 bi bi-link-45deg"></i>
                     </Card.Title>
                     <Button variant={bgTheme} size="sm" title="Embed this card!" onClick={() => setShowEmbedModal(true)}><i className="bi bi-code-slash"></i></Button>
                 </Card.Header>
                 <Card.Body className="pt-0">
                     <Row className="d-flex">
                         <Col md="auto" className="my-3 d-flex justify-content-center align-items-center">
-                            <Card.Img as={Image} variant="top" roundedCircle style={{ maxWidth: 128, maxHeight : 128 }} src={user.avatar_url} />
+                            <Card.Img as={Image} variant="top" roundedCircle style={{ maxWidth: 128, maxHeight: 128 }} src={user.avatar_url} />
                         </Col>
                         <Col md="auto" className="my-3 d-flex flex-column justify-content-around align-items-start">
                             <Card.Title title="Name" className="d-inline">{user.name}</Card.Title>
@@ -68,17 +97,19 @@ export default function BusinessCard() {
                     <Modal.Title>Embed Card</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <InputGroup>
-                        <Button variant="outline-secondary" onClick={() => {
-                            if(navigator.clipboard){
-                                navigator.clipboard.writeText(document.querySelector("#embedInput").value).then(() => {
-                                    document.querySelector("#embedInput").select();
-                                });
-                            } else { document.execCommand("copy"); } 
-                        }}
-                        >Copy</Button>
-                        <FormControl type="text" id="embedInput" value={`<embed type="text/html" src="https://eduardoromeu.github.io/#/card" title="${user.login}'s Card">`} />
-                    </InputGroup>
+                    <Form>
+                        <Form.Group className="mb-2">
+                            <Form.Check inline defaultChecked type="radio" name="theme-radio" id="dark-theme-radio" label="Dark theme" onChange={() => changeEmbedTheme("dark")} />
+                            <Form.Check inline type="radio" name="theme-radio" id="light-theme-radio" label="Light theme" onChange={() => changeEmbedTheme("light")} />
+                        </Form.Group>
+
+                        <InputGroup className="mb-2">
+                            <Button variant="outline-secondary" onClick={() => copyEmbed()}>Copy</Button>
+                            <FormControl type="text" id="embedInput" defaultValue={`<embed type="text/html" src="https://eduardoromeu.github.io/#/card?height=100vh" title="${user.login}'s Card">`} />
+                        </InputGroup>
+
+                        <Form.Text className="text-muted">Please keep embed height higher than 227px for desktop and 425px for mobile</Form.Text>
+                    </Form>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="success" onClick={() => setShowEmbedModal(false)}>
@@ -86,6 +117,6 @@ export default function BusinessCard() {
                     </Button>
                 </Modal.Footer>
             </Modal>
-        </Fragment>
+        </Container>
     );
 }
