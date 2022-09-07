@@ -11,10 +11,10 @@ export default function Repos() {
 
     const [user, setUser] = useState<GithubUser>({});
     const [repos, setRepos] = useState<GithubRepository[]>([]);
-    const [pagination, setPagination] = useState<GithubPagination>({ current: 2, last: 1, next: 1, prev: 1 }); //fazer páginas
+    const [pagination, setPagination] = useState<GithubPagination>({ current: 1, last: 1, next: 1, prev: 1 }); //fazer páginas
 
     useEffect(() => {
-        ghApi.getUser("microsoft", setUser);
+        ghApi.getUser("eduardoromeu", setUser);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -22,6 +22,11 @@ export default function Repos() {
         ghApi.getRepos(user, setRepos, {sort: "updated", direction: "desc", page: pagination.current}, setPagination);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user]);
+
+    useEffect(() => {
+        if(pagination.current > pagination.last) pagination.current = pagination.last;
+        if(pagination.current < 1) pagination.current = 1;
+    }, [pagination])
 
     useEffect(() => {
         ghApi.getRepos(user, setRepos, {sort: "updated", direction: "desc", page: pagination.current});
@@ -41,7 +46,7 @@ export default function Repos() {
         )
     }
 
-    console.log({...pagination});
+    // console.log({...pagination});
 
     return (
         <Fragment>
