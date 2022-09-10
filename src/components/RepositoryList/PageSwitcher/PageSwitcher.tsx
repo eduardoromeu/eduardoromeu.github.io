@@ -18,7 +18,13 @@ interface ItemProps {
 export default function PageSwitcher({pagination, setPagination}: Props){
 
     const {current, last, next, prev} = pagination;
-    const [pageNumber, setPageNumber] = useState<string>("");
+    const [pageValue, setPageValue] = useState<string>("");
+    const [showPageInput, setShowPageInput] = useState({})
+    
+    function goToPage(page: number | string){
+        const pageInt = (typeof(page) === 'string') ? Math.floor(Number(page)) : page;
+        setPagination({...pagination, current: pageInt});
+    }
 
     const PaginationItem = ({page}: ItemProps) => (
         <Pagination.Item onClick={() => setPagination({...pagination, current: page})}>{page}</Pagination.Item>
@@ -33,32 +39,39 @@ export default function PageSwitcher({pagination, setPagination}: Props){
                     type="number"
                     min="1"
                     max={last}
-                    onChange={event => setPageNumber(event.target.value)}
+                    placeholder={`1 ~ ${last}`}
+                    onChange={event => setPageValue(event.target.value)}
                 />
-                <Button onClick={() => {
-                    if(pageNumber) setPagination({...pagination, current: parseInt(pageNumber)})
-                }}> Go </Button>
+                <Button onClick={() => goToPage(pageValue)}> Go </Button>
             </Popover.Body>
         </Popover>
     );
 
     return (
         <Pagination className="d-flex justify-content-center">
-            <Pagination.First onClick={() => setPagination({...pagination, current: 1})} />
-            <Pagination.Prev onClick={() => setPagination({...pagination, current: prev})} hidden={prev === 1} />
+            <Pagination.First onClick={() => setPagination({...pagination, current: 1})} disabled={last === 1} />
+            <Pagination.Prev onClick={() => setPagination({...pagination, current: prev})} hidden={last === 1} />
             {
                 <>
                     { (prev - 1 <= 0)  ? <></> : <PaginationItem page={prev - 1} /> }
                     { (prev === current) ? <></> : <PaginationItem page={prev} /> }
-                    <OverlayTrigger overlay={PageInput} trigger="click" placement="bottom-end" >
+                    <OverlayTrigger 
+                        overlay={PageInput}
+                        trigger="click"
+                        placement="bottom-start"
+                        {...showPageInput}
+                        onToggle={() => {
+                            (last === 1) ? setShowPageInput({show: false}) : setShowPageInput({});
+                        }
+                    }>
                         <Pagination.Item active style={{cursor: "pointer"}}>{current}</Pagination.Item>
                     </OverlayTrigger>
                     { (next === current) ? <></> : <PaginationItem page={next} /> }
                     { (next + 1 > last) ? <></> : <PaginationItem page={next + 1} /> }
                 </>
             }
-            <Pagination.Next onClick={() => setPagination({...pagination, current: next})} hidden={next === last} />
-            <Pagination.Last onClick={() => setPagination({...pagination, current: last})} />
+            <Pagination.Next onClick={() => setPagination({...pagination, current: next})} hidden={last === 1} />
+            <Pagination.Last onClick={() => setPagination({...pagination, current: last})} disabled={last === 1} />
         </Pagination>
     );
 }

@@ -9,7 +9,7 @@ interface Props {
     repos: GithubRepository[]
 }
 
-export default function RepositoryList({repos}: Props){ //Fazer estado para causar re-render, implementar páginas
+export default function RepositoryList({repos}: Props){
 
     const [repositories, setRepositories] = useState<GithubRepository[]>(repos);
 
