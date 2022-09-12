@@ -7,3 +7,4 @@
 - Fix PageSwitcher not updating when user is changed
 - Fix PageSwitcher weird behaviors (`'[...Array(n)].map'` could help)
     - ref: https://logfetch.com/jsx-repeat-n-times/
+- Fix issues with API rate limits
