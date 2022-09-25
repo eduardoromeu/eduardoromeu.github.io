@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 
-export default function TopicList(){
+export default function Filters(){
     return (
         <Fragment>
             

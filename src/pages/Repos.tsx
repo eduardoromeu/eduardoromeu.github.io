@@ -1,11 +1,12 @@
 import { Fragment, useEffect, useState } from "react";
-import { Container, Spinner } from "react-bootstrap";
+import { Container, Spinner, Row, Col } from "react-bootstrap";
 import PageSwitcher from "../components/RepositoryList/PageSwitcher/PageSwitcher";
 import RepositoryList from "../components/RepositoryList/RepositoryList";
 import GithubRepository from "../interfaces/GithubRepository";
 import GithubUser from "../interfaces/GithubUser";
 import * as ghApi from "../api/GithubAPI";
 import GithubPagination from "../interfaces/GithubPagination";
+import User from "../components/RepositoryList/User/User";
 
 export default function Repos() {
 
@@ -14,7 +15,7 @@ export default function Repos() {
     const [pagination, setPagination] = useState<GithubPagination>({ current: 1, last: 1, next: 1, prev: 1 }); //fazer páginas
 
     useEffect(() => {
-        ghApi.getUser("eduardoromeu", setUser);
+        ghApi.getUser("canonical", setUser);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -50,7 +51,16 @@ export default function Repos() {
 
     return (
         <Fragment>
-            <PageSwitcher pagination={pagination} setPagination={setPagination}  /> {/* mudar para o RepositoryList.tsx */}
+            <Container fluid as={Row}>
+                <Col className="mb-2">
+                    <User user={user} setUser={setUser} />
+                </Col>
+                <Col className="d-flex align-items-center">
+                    <PageSwitcher pagination={pagination} setPagination={setPagination}  /> {/* mudar para o RepositoryList.tsx */}
+                </Col>
+                <Col>
+                </Col>
+            </Container>
             <RepositoryList repos={repos} />
         </Fragment>
     )

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import GithubRepository from "../../interfaces/GithubRepository";
 import Card from "./Card/Card";
-import TopicList from "./TopicList/TopicList";
+import Filters from "./Filters/Filters";
 import PageSwitcher from "./PageSwitcher/PageSwitcher";
 
 interface Props {
@@ -19,7 +19,7 @@ export default function RepositoryList({repos}: Props){
 
     return (
         <Container fluid>
-            <TopicList />
+            <Filters />
             <Row>
                 {
                     repositories.map((repo) => (
