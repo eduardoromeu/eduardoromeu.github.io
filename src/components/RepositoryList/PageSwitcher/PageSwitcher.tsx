@@ -16,7 +16,7 @@ interface ItemProps {
     props?: {}
 }
 
-export default function PageSwitcher({pagination, setPagination}: Props){
+export default function PageSwitcher({pagination, setPagination}: Props){ //Detectar quando o usuário mudou
 
     const {current, last, next, prev} = pagination;
     const [pagesToRender, setPagesToRender] = useState<number[]>([]);
@@ -73,9 +73,11 @@ export default function PageSwitcher({pagination, setPagination}: Props){
                 [...Array((last < 5) ? last : 5)].map((e, i) => {
                     let index = i + 1;
 
-                    if(current > 3) index = index + (current - 3);
-                    if(current > last - 2) index = index - 1;
-                    if(current > last - 1) index = index - 1;
+                    if(current > 3){
+                        index = index + (current - 3);
+                        if(current > last - 2) index = index - 1;
+                        if(current > last - 1) index = index - 1;
+                    } 
 
                     return (
                         <PaginationItem page={index} props={{active: (index === current)}} />
@@ -94,7 +96,7 @@ export default function PageSwitcher({pagination, setPagination}: Props){
                     (last === 1) ? setShowPageInput({show: false}) : setShowPageInput({});
                 }
             }>
-                <Pagination.Ellipsis />
+                <Pagination.Ellipsis hidden={last <= 5} />
             </OverlayTrigger>
         </Pagination>
     );

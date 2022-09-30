@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { InputGroup, Form, Button } from "react-bootstrap";
+import * as ghApi from "../../../api/GithubAPI"
 import GithubUser from "../../../interfaces/GithubUser";
 
 interface Props {
@@ -7,19 +8,31 @@ interface Props {
     setUser: Function
 }
 
-export default function User({user, setUser}: Props){
+export default function User({user, setUser}: Props){ //Possiilitar visualizar informações do usuário
 
-    const [newUser, setNewUser] = useState<string>("");
+    const [newLogin, setNewLogin] = useState<string>("");
+    const [newUser, setNewUser] = useState<GithubUser>(user);
 
     const changeUser = (userLogin: string) => {
-        if(userLogin) setNewUser(userLogin);
+        if(!userLogin) return;
+        ghApi.getUser(userLogin, setNewUser);
     }
+
+    useEffect(() => {
+        if(!newUser || newUser === user) return;
+        setUser(newUser);
+        console.log(newUser);
+    }, [newUser]);
 
     return (
         <InputGroup>
             <InputGroup.Text><i className="bi bi-person-fill" /></InputGroup.Text>
-            <Form.Control placeholder="Github login" defaultValue={user.login} onChange={e => setNewUser(e.target.value)} />
-            <Button variant="outline-secondary" onClick={() => changeUser(newUser)}><i className="bi bi-arrow-right" /></Button>
+            <Form.Control
+                placeholder="Github login"
+                defaultValue={user.login}
+                onChange={event => setNewLogin(event.target.value)}
+            />
+            <Button variant="outline-secondary" onClick={() => changeUser(newLogin)}><i className="bi bi-arrow-right" /></Button>
         </InputGroup>
     );
 }
