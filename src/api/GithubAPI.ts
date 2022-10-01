@@ -26,13 +26,16 @@ const getRepos = async(user: GithubUser, setRepos: Function, params?: RepoParams
         (user.repos_url) ? user.repos_url : `/users/${user.login}/repos`, { params }
     )
     setRepos(res.data);
-    if(setPagination && res.headers.link) setPagination({
+
+    if(setPagination) setPagination({
         ...formatPagination(res.headers.link),
         current: (params) ? params.page : 1
     });
 }
 
-function formatPagination(headerLinks: string): GithubPagination{
+function formatPagination(headerLinks: string | undefined): GithubPagination{
+    if(headerLinks === undefined) return ({last: 1, prev: 1, next: 1, current: 1});
+
     let links: {last: string, next: string, prev: string} = {last: "", next: "", prev: ""};
 
     headerLinks.split(",").forEach((linkStr) => {

@@ -7,7 +7,10 @@ import GithubPagination from "../../../interfaces/GithubPagination";
 import { useEffect, useState } from "react";
 
 interface Props {
-    pagination: GithubPagination,
+    current: number,
+    last: number,
+    prev: number,
+    next: number,
     setPagination: Function
 }
 
@@ -16,21 +19,19 @@ interface ItemProps {
     props?: {}
 }
 
-export default function PageSwitcher({pagination, setPagination}: Props){ //Detectar quando o usuário mudou
+export default function PageSwitcher({current, last, prev, next, setPagination}: Props){ //Detectar quando o usuário mudou
 
-    const {current, last, next, prev} = pagination;
+    const [pageState, setPageState] = useState<GithubPagination>({current, last, next, prev});
     const [pageInputValue, setPageInputValue] = useState<string>("");
     const [showPageInput, setShowPageInput] = useState({});
 
-    useEffect(() => {
+    useEffect((() => {
+        setPageState({current, last, next, prev});
+    }), [current, last, prev, next]);
 
-    }, [pagination]);
-
-    // useEffect(() => console.log(pagination), []);
-    
     function goToPage(page: number | string){
         const pageInt = (typeof(page) === 'string') ? Math.floor(Number(page)) : page;
-        setPagination({...pagination, current: pageInt});
+        setPagination({...pageState, current: pageInt});
     }
 
     const PaginationItem = ({page, props}: ItemProps) => (
@@ -44,7 +45,7 @@ export default function PageSwitcher({pagination, setPagination}: Props){ //Dete
                     variant="outline-danger"
                     size="sm"
                     className="bi bi-x me-2 rounded-5 border-0"
-                    //Make work
+                    //Make this work
                 />
                 Go to page {`(Max: ${last})`}
             </Popover.Header>
@@ -62,6 +63,7 @@ export default function PageSwitcher({pagination, setPagination}: Props){ //Dete
         </Popover>
     );
 
+
     return (
         <Pagination className="d-flex justify-content-center">
             <Pagination.First onClick={() => goToPage(1)} disabled={last === 1} />
@@ -69,7 +71,6 @@ export default function PageSwitcher({pagination, setPagination}: Props){ //Dete
             {                
                 [...Array((last < 5) ? last : 5)].map((e, i) => {
                     let index = i + 1;
-
                     if(current > 3){
                         index = index + (current - 3);
                         if(current > last - 2) index = index - 1;
@@ -77,7 +78,7 @@ export default function PageSwitcher({pagination, setPagination}: Props){ //Dete
                     } 
 
                     return (
-                        <PaginationItem page={index} props={{active: (index === current)}} />
+                        <PaginationItem key={index} page={index} props={{active: (index === current)}} />
                     )
                 })
             }

@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState, useRef } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Container, Spinner, Row, Col } from "react-bootstrap";
 import PageSwitcher from "../components/RepositoryList/PageSwitcher/PageSwitcher";
 import RepositoryList from "../components/RepositoryList/RepositoryList";
@@ -21,24 +21,12 @@ export default function Repos() {
     }, [])
 
     useEffect(() => {
-        ghApi.getRepos(user, setRepos, {sort: "updated", direction: "desc", page: pagination.current}, setPagination); //Colocar na página 1
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        ghApi.getRepos(user, setRepos, {sort: "updated", direction: "desc", page: 1}, setPagination);
     }, [user]);
 
     useEffect(() => {
-        if(pagination.current > pagination.last) pagination.current = pagination.last;
-        if(pagination.current < 1) pagination.current = 1;
-    }, [pagination])
-
-    useEffect(() => {
-        ghApi.getRepos(user, setRepos, {sort: "updated", direction: "desc", page: pagination.current});
-        setPagination({
-            ...pagination,
-            prev: (pagination.current > 1) ? pagination.current - 1 : 1,
-            next: (pagination.current < pagination.last) ? pagination.current + 1 : pagination.last
-        })
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [pagination.current])
+        ghApi.getRepos(user, setRepos, {sort: "updated", direction: "desc", page: 1});
+    }, [pagination, user])
 
     if(!Object.keys(user).length || !repos.length){
         return (
@@ -48,8 +36,6 @@ export default function Repos() {
         )
     }
 
-    // console.log({...pagination});
-
     return (
         <Fragment>
             <Container fluid as={Row} wrap="true">
@@ -57,7 +43,7 @@ export default function Repos() {
                     <User user={user} setUser={setUser} />
                 </Col>
                 <Col className="d-flex align-items-center justify-content-center mb-2" md={12} lg={4}>
-                    <PageSwitcher pagination={pagination} setPagination={setPagination}  />
+                    <PageSwitcher {...pagination} setPagination={setPagination}  />
                 </Col>
                 <Col className="d-flex justify-content-end align-items-start" md={12} lg={4}>
                     <Filters />
