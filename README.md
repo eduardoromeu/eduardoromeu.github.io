@@ -3,9 +3,7 @@
     - Fixed Routing
 
 #### To do
-- Fix PageSwitcher not updating when user is changed
-- Finish User.tsx component
-- Put a revert/undo button in the User.tsx component
-- Traduzir para PT e JP
+- Put a revert/undo button in the User.tsx component and make it change user when enter is pressed
+- translate to portuguese and japanese
 - Fix issues with API rate limits
 - Modo offline/backup
