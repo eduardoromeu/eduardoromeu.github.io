@@ -19,25 +19,14 @@ interface ItemProps {
 export default function PageSwitcher({pagination, setPagination}: Props){ //Detectar quando o usuário mudou
 
     const {current, last, next, prev} = pagination;
-    const [pagesToRender, setPagesToRender] = useState<number[]>([]);
     const [pageInputValue, setPageInputValue] = useState<string>("");
     const [showPageInput, setShowPageInput] = useState({});
 
     useEffect(() => {
-        let pages: number[] = [];
 
-        if(last <= 5 || current <= 3){
-            for(let i = 1; i <= last; i++){
-                pages.push(i);
-            }
-        } else {
-            if(next + 1 === last){
-                [next, next + 1].map(e => pages.push(e))
-            }
-            [prev - 1, prev].map(e => pages.push(e));
-        }
-        setPagesToRender(pages);
     }, [pagination]);
+
+    // useEffect(() => console.log(pagination), []);
     
     function goToPage(page: number | string){
         const pageInt = (typeof(page) === 'string') ? Math.floor(Number(page)) : page;
@@ -50,7 +39,15 @@ export default function PageSwitcher({pagination, setPagination}: Props){ //Dete
 
     const PageInput = (
         <Popover id="page-popover">
-            <Popover.Header>Go to page {`(Max: ${last})`}</Popover.Header>
+            <Popover.Header className="d-flex justify-content-start ps-2 text-center">
+                <Button 
+                    variant="outline-danger"
+                    size="sm"
+                    className="bi bi-x me-2 rounded-5 border-0"
+                    //Make work
+                />
+                Go to page {`(Max: ${last})`}
+            </Popover.Header>
             <Popover.Body className="d-flex justify-content-between" as={InputGroup}>
                 <Form.Control
                     id="page-input"

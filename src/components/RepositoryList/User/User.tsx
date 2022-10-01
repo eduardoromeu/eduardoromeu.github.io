@@ -21,7 +21,6 @@ export default function User({user, setUser}: Props){ //Possiilitar visualizar i
     useEffect(() => {
         if(!newUser || newUser === user) return;
         setUser(newUser);
-        console.log(newUser);
     }, [newUser]);
 
     return (
