@@ -35,7 +35,7 @@ export default function PageSwitcher({current, last, prev, next, setPagination}:
     }
 
     const PaginationItem = ({page, props}: ItemProps) => (
-        <Pagination.Item onClick={() => goToPage(page)} {...props}>{page}</Pagination.Item>
+        <Pagination.Item onClick={() => goToPage(page)} {...props} disabled>{page}</Pagination.Item>
     );
 
     const PageInput = (
@@ -66,8 +66,8 @@ export default function PageSwitcher({current, last, prev, next, setPagination}:
 
     return (
         <Pagination className="d-flex justify-content-center">
-            <Pagination.First onClick={() => goToPage(1)} disabled={last === 1} />
-            <Pagination.Prev onClick={() => goToPage(prev)} hidden={last === 1} />
+            <Pagination.First onClick={() => goToPage(1)} disabled={last === 1 || true} />
+            <Pagination.Prev onClick={() => goToPage(prev)} hidden={last === 1} disabled />
             {                
                 [...Array((last < 5) ? last : 5)].map((e, i) => {
                     let index = i + 1;
@@ -83,8 +83,8 @@ export default function PageSwitcher({current, last, prev, next, setPagination}:
                 })
             }
 
-            <Pagination.Next onClick={() => goToPage(next)} hidden={last === 1} />
-            <Pagination.Last onClick={() => goToPage(last)} disabled={last === 1} />
+            <Pagination.Next onClick={() => goToPage(next)} hidden={last === 1 || true} disabled />
+            <Pagination.Last onClick={() => goToPage(last)} disabled={last === 1 || true} />
             <OverlayTrigger
                 overlay={PageInput}
                 trigger="click"
@@ -94,7 +94,7 @@ export default function PageSwitcher({current, last, prev, next, setPagination}:
                     (last === 1) ? setShowPageInput({show: false}) : setShowPageInput({});
                 }
             }>
-                <Pagination.Ellipsis hidden={last <= 5} />
+                <Pagination.Ellipsis hidden={last <= 5} disabled />
             </OverlayTrigger>
         </Pagination>
     );

@@ -21,7 +21,7 @@ export default function User({user, setUser}: Props){ //Possiilitar visualizar i
     }
 
     return (
-        <InputGroup>
+        <InputGroup title='Change User'>
             <InputGroup.Text><i className="bi bi-person-fill" /></InputGroup.Text>
             <Form.Control
                 placeholder="Github login"
