@@ -13,7 +13,7 @@ export default function Filters(){
 
     return (
         <Fragment>
-            <Button variant="outline-primary" onClick={() => showHandler()} disabled>Filters <i className="bi bi-sliders ms-1" /></Button>
+            <Button variant="outline-primary" onClick={() => showHandler()}>Filters <i className="bi bi-sliders ms-1" /></Button>
 
             <Modal show={showModal} onHide={showHandler} size="xl">
                 <Modal.Header>

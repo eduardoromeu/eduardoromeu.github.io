@@ -14,7 +14,7 @@ export default function Topics({topics}: Props){
                             as="a" 
                             key={topic} 
                             pill 
-                            bg="light" 
+                            bg="light"
                             text="dark" 
                             className="mx-1 text-decoration-none"  
                             href={`https://github.com/topics/${topic}`}
