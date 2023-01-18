@@ -1,7 +1,7 @@
 {
   "name": "eduardoromeu.github.io",
   "homepage": "https://eduardoromeu.github.io/",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "private": true,
   "dependencies": {
     "@octokit/rest": "^19.0.5",
