@@ -83,8 +83,6 @@ export default function PageSwitcher({current, last, prev, next, setPagination}:
                 })
             }
 
-            <Pagination.Next onClick={() => goToPage(next)} hidden={last === 1} />
-            <Pagination.Last onClick={() => goToPage(last)} disabled={last === 1} />
             <OverlayTrigger
                 overlay={PageInput}
                 trigger="click"
@@ -96,6 +94,9 @@ export default function PageSwitcher({current, last, prev, next, setPagination}:
             }>
                 <Pagination.Ellipsis hidden={last <= 5} />
             </OverlayTrigger>
+
+            <Pagination.Next onClick={() => goToPage(next)} hidden={last === 1} />
+            <Pagination.Last onClick={() => goToPage(last)} disabled={last === 1} />
         </Pagination>
     );
 }

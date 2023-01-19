@@ -13,7 +13,7 @@ export default function User({user, setUser}: Props){ //Possiilitar visualizar i
     const [newLogin, setNewLogin] = useState<string>((user.login) ? user.login : "");
 
     const changeUser = (userLogin: string) => {
-        if(!userLogin) return;
+        if(!userLogin || userLogin === user.login) return;
         ghApi.getUser(userLogin, (usr: GithubUser) => {
             if(!usr || usr === user) return;
             setUser(usr);
@@ -30,7 +30,7 @@ export default function User({user, setUser}: Props){ //Possiilitar visualizar i
             />
             <Button 
                 variant="outline-secondary"
-                disabled={newLogin === user.login}
+                // disabled={newLogin === user.login}
                 onClick={() => changeUser(newLogin)}
             >
                 <i className="bi bi-arrow-right" />
