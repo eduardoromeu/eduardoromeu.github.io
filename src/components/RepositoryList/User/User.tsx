@@ -27,10 +27,12 @@ export default function User({user, setUser}: Props){ //Possiilitar visualizar i
                 placeholder="Github login"
                 defaultValue={user.login}
                 onChange={event => setNewLogin(event.target.value)}
+                onKeyDown={(e) => {
+                    if(e.key === 'Enter') changeUser(newLogin);
+                }}
             />
             <Button 
                 variant="outline-secondary"
-                // disabled={newLogin === user.login}
                 onClick={() => changeUser(newLogin)}
             >
                 <i className="bi bi-arrow-right" />
