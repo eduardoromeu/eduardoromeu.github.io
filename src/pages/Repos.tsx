@@ -7,7 +7,6 @@ import GithubUser from "../interfaces/GithubUser";
 import * as ghApi from "../api/GithubAPI";
 import GithubPagination from "../interfaces/GithubPagination";
 import User from "../components/RepositoryList/User/User";
-import Filters from "../components/RepositoryList/Filters/Filters";
 
 export default function Repos() {
 
@@ -44,10 +43,10 @@ export default function Repos() {
                     <User user={user} setUser={setUser} />
                 </Col>
                 <Col className="d-flex align-items-center justify-content-center mb-2" md={12} lg={4}>
-                    <PageSwitcher {...pagination} setPagination={setPagination}  />
+                    {/* <Filters /> */}
                 </Col>
                 <Col className="d-flex justify-content-end align-items-start" md={12} lg={4}>
-                    <Filters />
+                    <PageSwitcher {...pagination} setPagination={setPagination}  />
                 </Col>
             </Container>
             <RepositoryList repos={repos} />

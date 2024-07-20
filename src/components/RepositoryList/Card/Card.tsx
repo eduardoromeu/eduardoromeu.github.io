@@ -1,22 +1,16 @@
-import { Fragment, useState, useEffect } from "react";
-import { Card as BsCard, Dropdown, ListGroup} from "react-bootstrap";
+import { Fragment, useState } from "react";
+import { Card as BsCard, ListGroup} from "react-bootstrap";
 import GithubRepository from "../../../interfaces/GithubRepository";
 import Description from "./Description/Description";
 import Topics from "./Topics/Topics";
-import style from './Card.module.scss';
 
 interface Props {
     repo: GithubRepository
 }
 
-export default function Card({ repo }: Props) { //Abrir menu por clique direito
+export default function Card({ repo }: Props) {
 
-    // const [repo, setRepo] = useState<GithubRepository>(repository);
     const [highlight, setHighlight] = useState<boolean>();
-
-    // useEffect(() => {
-    //     setRepo(repo);
-    // }, [repo]);
 
     return (
         <Fragment>
@@ -31,23 +25,12 @@ export default function Card({ repo }: Props) { //Abrir menu por clique direito
                         </a>
                     </BsCard.Title>
                     
-                    <Dropdown>
-                        <Dropdown.Toggle
-                            as="i"
-                            id="dotsDropBtn"
-                            style={{cursor: 'pointer'}}
-                            title="More"
-                        />
+                    {
+                        (repo.homepage) ?
+                            <a href={repo.homepage} target="_blank" rel="noreferrer" title={`Repository's page: ${repo.homepage}`}><i className="bi bi-house text-muted"/></a>
+                        : <></>
+                    }
 
-                        <Dropdown.Menu>
-                            {
-                                (repo.homepage) ? 
-                                <Dropdown.Item href={repo.homepage} title={repo.homepage}><i className="bi bi-house me-2" />Repository's page
-                                </Dropdown.Item> : <></> 
-                            }
-                            <Dropdown.Item disabled><i className="bi bi-info-circle me-2" />More Info (soon)</Dropdown.Item>
-                        </Dropdown.Menu>
-                    </Dropdown>
                 </BsCard.Header>
                     <ListGroup variant="flush">
                         <ListGroup.Item>
