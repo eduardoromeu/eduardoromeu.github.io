@@ -1,0 +1,23 @@
+html, body, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    min-height: 100vh;
+    font-family: "Rubik", sans-serif;
+}
+
+body {
+    color-scheme: light dark;
+    background-color: Canvas;
+    color: CanvasText;
+}
+
+.page-header {
+    height: 58px;
+    border-bottom: 1px solid ButtonBorder;
+    display: flex;
+    align-items: center;
+    padding: 0 .5em 0 .5em;
+}
