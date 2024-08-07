@@ -1,4 +1,4 @@
-html, body, h1, h2, h3, h4, h5, h6 {
+html, body, h1, h2, h3, h4, h5, h6, ul {
     margin: 0;
     padding: 0;
 }
@@ -11,13 +11,37 @@ html {
 body {
     color-scheme: light dark;
     background-color: Canvas;
+    background-image: radial-gradient(circle 815px at 23.4% -21.8%,  rgba(9,29,85,1) 0.2%, rgba(0,0,0,1) 100.2% );
     color: CanvasText;
 }
 
 .page-header {
     height: 58px;
-    border-bottom: 1px solid ButtonBorder;
+    vertical-align: middle;
+    display: grid;
+    grid-auto-flow: column;
+}
+
+.header-section {
     display: flex;
     align-items: center;
-    padding: 0 .5em 0 .5em;
+    justify-content: center;
+}
+
+.page-title {
+    font-weight: lighter;
+}
+
+.page-nav {
+    flex-grow: 1;
+    padding: 0 25%;
+}
+
+.page-links {
+    display: flex;
+    justify-content: space-between;
+}
+
+.page-link {
+    list-style: none;
 }
