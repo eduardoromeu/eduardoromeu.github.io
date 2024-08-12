@@ -15,33 +15,65 @@ body {
     color: CanvasText;
 }
 
+a {
+    text-decoration: none;
+    color: CanvasText;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    min-height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer button {
+    margin: 0 5px;
+}
+
 .page-header {
-    height: 58px;
-    vertical-align: middle;
-    display: grid;
-    grid-auto-flow: column;
+    min-height: 64px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .header-section {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: .25em 0;
 }
 
 .page-title {
     font-weight: lighter;
 }
 
-.page-nav {
-    flex-grow: 1;
-    padding: 0 25%;
-}
-
 .page-links {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-auto-flow: column;
+    width: fit-content;
+    text-wrap: nowrap;
 }
 
 .page-link {
     list-style: none;
+    margin: .25em;
+    padding: .25em;
+    width: fit-content;
+}
+
+#about-me {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+html:lang("en") :lang("pt"), 
+html:lang("pt") :lang("en") {
+    display: none;
 }

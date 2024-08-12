@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="default">
+<html lang="pt" data-theme="default">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,22 +17,56 @@
             <h1 class="page-title" id="pageTitle">
                 eduardo<b>romeu</b>
             </h1>
-
         </div>
-        <div class="header-section">
-            <nav class="page-nav">
-                <ul class="page-links">
-                    <li class="page-link"><a>Portfólio</a></li>
-                    <li class="page-link"><a>Formação</a></li>
-                    <li class="page-link"><a>Sobre Mim</a></li>
-                    <li class="page-link"><a>Contato</a></li>
-                </ul>
-            </nav>
-        </div>
+        <nav class="header-section">
+            <ul class="page-links">
+                <li class="page-link">
+                    <a href="#about-me" lang="pt">Sobre Mim</a>
+                    <!-- <a href="#about-me" lang="en">About Me</a> -->
+                </li>
+                <li class="page-link"><a href="#portfolio">Portfólio</a></li>
+                <li class="page-link"><a href="#education">Formação</a></li>
+                <li class="page-link"><a href="#contact">Contato</a></li>
+            </ul>
+        </nav>
+        <!-- <button class="header-section btn">
+            <p lang="en">English</p>
+            <p lang="pt">Português</p>
+        </button> -->
     </header>
+
+    <main>
+        <section id="about-me" class="main-section">
+            <h2>Hello</h2>
+        </section>
+
+        <section id="portfolio" class="main-section">
+
+        </section>
+        
+        <section id="education" class="main-section">
+
+        </section>
+        
+        <section id="contact" class="main-section">
+
+        </section>
+    </main>
+
+    <footer>
+        <button onclick="langEN()">EN</button>
+        <button onclick="langPT()">PT</button>
+    </footer>
 
     <script>
         window.location.replace("https://eduardoromeu.github.io/react-repo-list/");
+        function langEN(){
+            document.documentElement.setAttribute("lang", "en");
+        }
+
+        function langPT(){
+            document.documentElement.setAttribute("lang", "pt");
+        }
     </script>
 </body>
 </html>
