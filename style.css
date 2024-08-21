@@ -10,6 +10,7 @@ html, body, p, h1, h2, h3, h4, h5, h6, ul {
 
 html {
     min-height: 100vh;
+    min-width: 100vw;
     font-family: "Rubik", sans-serif;
 }
 
@@ -17,12 +18,12 @@ body {
     color-scheme: light dark;
     background-color: Canvas;
     background-image: var(--bg-gradient);
-    color: CanvasText;
+    color: white;
 }
 
 a {
     text-decoration: none;
-    color: CanvasText;
+    color: white;
 }
 
 
@@ -54,6 +55,7 @@ footer button {
 
 .page-header {
     min-height: 64px;
+    min-width: 100vw;
     margin-bottom: .5em;
     position: sticky;
     top: 0;
@@ -78,10 +80,10 @@ footer button {
 }
 
 .page-links {
-    display: grid;
-    grid-auto-flow: column;
-    width: fit-content;
     text-wrap: nowrap;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .page-link {
@@ -105,31 +107,37 @@ footer button {
 }
 
 .main-section {
-    padding: .75em;
-    margin: .25em;
+    margin: 1.25em;
 }
 
-#about-me {
-
-}
-
-.introduction-text {
+.page-card {
     padding: 1.25em;
     background-color: var(--white-transparency);
     border: 1px solid var(--white-transparency);
     border-radius: .25em;
 }
 
-.introduction-text > h3 {
+.page-card > h3 {
     border-bottom: 1px solid var(--white-transparency);
     margin-bottom: .5em;
     padding-bottom: .15em;
 }
 
 #portfolio {
-    height: 1000px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20px, 1fr));
+    gap: 1.25em;
 }
 
 .project-card {
     
 }
+
+#contact {
+    display: flex;
+    flex-direction: column;
+}
+
+textarea {
+    resize: none;
+  }

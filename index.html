@@ -30,38 +30,51 @@
     </header>
 
     <main>
-        <section id="about-me" class="main-section">
-            <div class="introduction-text">
-                <h3>Sobre mim</h3>
-                <p>
-                    Olá, meu nome é Eduardo, tenho <span id="my-age" title="03/02/2005">19</span> anos e vários hobbies, como 
-                    <a href="https://myanimelist.net/animelist/Romeu_" target="_blank" rel="noopener noreferrer" class="text-link">
-                        assistir animes</a>,
-                    <a href="https://steamcommunity.com/profiles/76561199230614741/" target="_blank" rel="noopener noreferrer" class="text-link">
-                        jogar (principalmente jogos de corrida)</a>,
-                    <a href="https://open.spotify.com/user/314edtdyrpu2nyy64svymy4kpwzm" target="_blank" rel="noopener noreferrer" class="text-link">
-                        ouvir música</a> e
-                    <a href="https://github.com/eduardoromeu/eduardoromeu.github.io" target="_blank" rel="noopener noreferrer" class="text-link">
-                        programar</a> (os dois ultimos juntos)!
-                    <script>
-                        document.querySelector("#my-age").textContent = new Date().getFullYear() - 2005;
-                    </script>
-                </p>
-            </div>
+        <section id="about-me" class="main-section page-card">
+            <h3>Sobre mim</h3>
+            <p>
+                Olá, meu nome é Eduardo, tenho <span id="my-age" title="03/02/2005">19</span> anos e vários hobbies, como 
+                <a href="https://myanimelist.net/animelist/Romeu_" target="_blank" rel="noopener noreferrer" class="text-link">
+                    assistir animes</a>,
+                <a href="https://steamcommunity.com/profiles/76561199230614741/" target="_blank" rel="noopener noreferrer" class="text-link">
+                    jogar (principalmente jogos de corrida)</a>,
+                <a href="https://open.spotify.com/user/314edtdyrpu2nyy64svymy4kpwzm" target="_blank" rel="noopener noreferrer" class="text-link">
+                    ouvir música</a> e
+                <a href="https://github.com/eduardoromeu/eduardoromeu.github.io" target="_blank" rel="noopener noreferrer" class="text-link">
+                    programar</a> (os dois ultimos juntos)!
+                <script>
+                    document.querySelector("#my-age").textContent = new Date().getFullYear() - 2005;
+                </script>
+            </p>
         </section>
 
         <section id="portfolio" class="main-section">
-            <div class="project-card">
+            <div class="project-card page-card">
+                
+            </div>
+            <div class="project-card page-card">
+                
+            </div>
+            <div class="project-card page-card">
+                
+            </div>
+            <div class="project-card page-card">
                 
             </div>
         </section>
         
-        <section id="education" class="main-section">
+        <section id="education" class="main-section page-card">
 
         </section>
         
-        <section id="contact" class="main-section">
-
+        <section id="contact" class="main-section page-card">
+            <h3>Contato</h3>
+            <form action="">
+                <!-- Colocar inputs aqui e ver se precisa por o titulo -->
+            </form>
+            <input type="text" placeholder="Nome">
+            <input type="email" placeholder="Email">
+            <textarea rows="3" maxlength="280" placeholder="Digite sua mensagem"></textarea>
         </section>
     </main>
 
