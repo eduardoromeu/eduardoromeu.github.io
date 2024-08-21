@@ -1,4 +1,9 @@
-html, body, h1, h2, h3, h4, h5, h6, ul {
+:root {
+    --bg-gradient: radial-gradient(circle 815px at 23.4% -21.8%,  rgba(9,29,85,1) 0.2%, rgba(0,0,0,1) 150.2% );
+    --white-transparency: rgba(255, 255, 255, .12);
+}
+
+html, body, p, h1, h2, h3, h4, h5, h6, ul {
     margin: 0;
     padding: 0;
 }
@@ -11,7 +16,7 @@ html {
 body {
     color-scheme: light dark;
     background-color: Canvas;
-    background-image: radial-gradient(circle 815px at 23.4% -21.8%,  rgba(9,29,85,1) 0.2%, rgba(0,0,0,1) 100.2% );
+    background-image: var(--bg-gradient);
     color: CanvasText;
 }
 
@@ -19,6 +24,7 @@ a {
     text-decoration: none;
     color: CanvasText;
 }
+
 
 footer {
     position: absolute;
@@ -34,19 +40,37 @@ footer button {
     margin: 0 5px;
 }
 
+.text-link {
+    color: lightskyblue;
+    background-color: transparent;
+    transition: .25s all;
+    border-bottom: 1px solid transparent;
+}
+
+.text-link:hover {
+    background-color: var(--white-transparency);
+    border-bottom: 1px solid lightblue;
+}
+
 .page-header {
     min-height: 64px;
+    margin-bottom: .5em;
+    position: sticky;
+    top: 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
+    background-color: var(--white-transparency);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--white-transparency);
 }
 
 .header-section {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: .25em 0;
+    margin: .25em 1em;
 }
 
 .page-title {
@@ -62,18 +86,50 @@ footer button {
 
 .page-link {
     list-style: none;
-    margin: .25em;
-    padding: .25em;
     width: fit-content;
+    margin: .5em .25em;
+}
+
+.page-link a {
+    padding: .25em .5em;
+    border-radius: 5px;
+    border: 2px solid transparent;
+    background-color: transparent;
+    transition: .25s all;
+    cursor: pointer;
+}
+
+.page-link a:hover {
+    border: 2px solid var(--white-transparency);
+    background-color: var(--white-transparency);
+}
+
+.main-section {
+    padding: .75em;
+    margin: .25em;
 }
 
 #about-me {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+
 }
 
-html:lang("en") :lang("pt"), 
-html:lang("pt") :lang("en") {
-    display: none;
+.introduction-text {
+    padding: 1.25em;
+    background-color: var(--white-transparency);
+    border: 1px solid var(--white-transparency);
+    border-radius: .25em;
+}
+
+.introduction-text > h3 {
+    border-bottom: 1px solid var(--white-transparency);
+    margin-bottom: .5em;
+    padding-bottom: .15em;
+}
+
+#portfolio {
+    height: 1000px;
+}
+
+.project-card {
+    
 }
