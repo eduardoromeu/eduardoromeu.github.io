@@ -2,26 +2,32 @@
 <html lang="pt"> 
 <head>
     <meta charset="UTF-8">
+    <!-- Tag para auxiliar na responsividade -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Fontes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
+    <!-- Arquivo CSS -->
     <link rel="stylesheet" href="style.css"/>
+
+    <!-- Título da página -->
     <title>Duduromeu's github</title>
 </head>
 <body>
-    <!-- COMENTAR CÓDIGO -->
+    <!-- Cabeçalho -->
     <header class="page-header">
         <div class="header-section">
+            <!-- Título do cabeçalho -->
             <h1 class="page-title" id="pageTitle">
                 eduardo<b>romeu</b>
             </h1>
         </div>
+        <!-- Nav e lista de links -->
         <nav class="header-section">
             <ul class="page-links">
-                <li class="page-link">
-                    <a href="#about-me" lang="pt">Sobre Mim</a>
-                </li>
+                <li class="page-link"><a href="#about-me">Sobre Mim</a></li>
                 <li class="page-link"><a href="#education">Formação</a></li>
                 <li class="page-link"><a href="#portfolio">Portfólio</a></li>
                 <li class="page-link"><a href="#contact">Contato</a></li>
@@ -29,10 +35,12 @@
         </nav>
     </header>
 
+    <!-- Conteúdo principal da página -->
     <main>
         <section id="about-me" class="main-section page-card">
-            <h3 class="card-title">Sobre mim</h3>
+            <h3 class="card-title">Sobre mim</h3> <!-- Título da seção -->
             <p>
+                <!-- Texto da seção Sobre Mim, com links no meio -->
                 Olá, meu nome é Eduardo, tenho <span id="my-age" title="03/02/2005">19</span> anos e vários hobbies, como 
                 <a href="https://myanimelist.net/animelist/Romeu_" target="_blank" rel="noopener noreferrer" class="text-link">
                     assistir animes</a>,
@@ -42,12 +50,15 @@
                     ouvir música</a> e
                 <a href="https://github.com/eduardoromeu/eduardoromeu.github.io" target="_blank" rel="noopener noreferrer" class="text-link">
                     programar</a> (os dois ultimos geralmente juntos).
+
+                <!-- Script que calcula a minha idade com base no ano que nasci e atualiza no texto -->
                 <script>
                     document.querySelector("#my-age").textContent = new Date().getFullYear() - 2005;
                 </script>
             </p>
         </section>
 
+        <!-- Seção Formação -->
         <section id="education" class="main-section page-card">
             <h3 class="card-title">Formação</h3>
             <P>Me formei no curso técnico de informática integrado ao ensino médio,
@@ -57,11 +68,10 @@
                     meu perfil do LinkedIn.
                 </a>
             </p>
-            <p>
-                Atualmente estou cursando Análise e Desenvolvimento de Sistemas pela Uninter!
-            </p>
+            <p>Atualmente estou cursando Análise e Desenvolvimento de Sistemas pela Uninter!</p>
             <br>
             <h3 class="card-title">Idiomas</h3>
+            <!-- Lista de idiomas, com um span para os emojis de bandeiras -->
             <ul class="page-list">
                 <li><span class="ct-flag">🇧🇷</span> <b>Português:</b> Nativo</li>
                 <li><span class="ct-flag">🇺🇸</span> <b>Inglês:</b> Intermediário</li>
@@ -69,14 +79,19 @@
             </ul>
         </section>
 
+        <!-- Seção Portfolio -->
         <section class="main-section page-card">
             <h3 class="card-title">Portfolio</h3>
+            
+            <!-- Cards com links para os projetos -->
             <div id="portfolio">
                 <a class="project-card" href="https://store.steampowered.com/app/2408060/Baixos_de_Quebrada/"
                 target="_blank" rel="noopener noreferrer">
+                    <!-- Imagem do projeto -->
                     <div class="card-image">
                         <img src="images/laf-banner.png" alt="Low and Furious Banner">
                     </div>
+                    <!-- Nome do projeto -->
                     <h4 class="project-card-title">Low And Furious</h4>
                 </a>
             
@@ -109,8 +124,10 @@
             </div>
         </section>
         
+        <!-- Seção de Contato -->
         <section id="contact" class="main-section page-card">
             <h3 class="card-title">Contato</h3>
+            <!-- Formulário com inputs que utilizam placeholder ao invés de labels para identificação -->
             <form class="contact-form">
                 <input required type="text" class="contact-input" autocomplete="name" placeholder="Nome">
                 <input required type="email" class="contact-input" autocomplete="email" placeholder="Email">
@@ -120,12 +137,9 @@
         </section>
     </main>
 
+    <!-- Rodapé simples -->
     <footer>
         <p>Made in 2024 by Eduardo Romeu</p>
     </footer>
-
-    <script>
-        // window.location.replace("https://eduardoromeu.github.io/react-repo-list/");
-    </script>
 </body>
 </html>
