@@ -71,7 +71,7 @@ footer button {
 .header-section {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: stretch;
     margin: .25em 1em;
 }
 
@@ -140,4 +140,16 @@ footer button {
 
 textarea {
     resize: none;
-  }
+}
+
+@media only screen and (max-width: 480px) {
+    .page-link {
+        list-style: none;
+        width: initial;
+        margin: .5em 0;
+    }
+
+    .header-section {
+        margin: .25em 0;
+    }
+}
