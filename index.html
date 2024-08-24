@@ -22,8 +22,8 @@
                 <li class="page-link">
                     <a href="#about-me" lang="pt">Sobre Mim</a>
                 </li>
-                <li class="page-link"><a href="#portfolio">Portfólio</a></li>
                 <li class="page-link"><a href="#education">Formação</a></li>
+                <li class="page-link"><a href="#portfolio">Portfólio</a></li>
                 <li class="page-link"><a href="#contact">Contato</a></li>
             </ul>
         </nav>
@@ -31,7 +31,7 @@
 
     <main>
         <section id="about-me" class="main-section page-card">
-            <h3>Sobre mim</h3>
+            <h3 class="card-title">Sobre mim</h3>
             <p>
                 Olá, meu nome é Eduardo, tenho <span id="my-age" title="03/02/2005">19</span> anos e vários hobbies, como 
                 <a href="https://myanimelist.net/animelist/Romeu_" target="_blank" rel="noopener noreferrer" class="text-link">
@@ -41,34 +41,52 @@
                 <a href="https://open.spotify.com/user/314edtdyrpu2nyy64svymy4kpwzm" target="_blank" rel="noopener noreferrer" class="text-link">
                     ouvir música</a> e
                 <a href="https://github.com/eduardoromeu/eduardoromeu.github.io" target="_blank" rel="noopener noreferrer" class="text-link">
-                    programar</a> (os dois ultimos juntos)!
+                    programar</a> (os dois ultimos juntos).
                 <script>
                     document.querySelector("#my-age").textContent = new Date().getFullYear() - 2005;
                 </script>
             </p>
         </section>
 
-        <section id="portfolio" class="main-section">
-            <div class="project-card page-card">
-                
-            </div>
-            <div class="project-card page-card">
-                
-            </div>
-            <div class="project-card page-card">
-                
-            </div>
-            <div class="project-card page-card">
-                
-            </div>
-        </section>
-        
         <section id="education" class="main-section page-card">
+            <h3 class="card-title">Formação</h3>
+            <P>Me formei no curso técnico de informática integrado ao ensino médio,
+                e desde o primeiro ano procuro fazer cursos na área de tecnologia da informação</P>
+            <p>
+                Você pode ver minha formação (quase) completa no
+                <a href="https://www.linkedin.com/in/eduardo-romeu-eberts-04b72821a/" rel="noopener noreferrer" target="_blank" class="text-link">
+                    meu perfil do LinkedIn.
+                </a>
+            </p>
+            <br>
+            <h3>Idiomas</h3>
+            <ul class="page-list">
+                <li><span class="ct-flag">🇧🇷</span> <b>Português:</b> Nativo</li>
+                <li><span class="ct-flag">🇺🇸</span> <b>Inglês:</b> Intermediário</li>
+                <li><span class="ct-flag">🇯🇵</span> <b>Japonês:</b> Básico / Hobby</li>
+            </ul>
+        </section>
 
+        <section class="main-section page-card">
+            <h3 class="card-title">Portfolio</h3>
+            <div id="portfolio">
+                <div class="project-card page-card">
+                    
+                </div>
+                <div class="project-card page-card">
+                    
+                </div>
+                <div class="project-card page-card">
+                    
+                </div>
+                <div class="project-card page-card">
+                    
+                </div>
+            </div>
         </section>
         
         <section id="contact" class="main-section page-card">
-            <h3>Contato</h3>
+            <h3 class="card-title">Contato</h3>
             <form action="">
                 <!-- Colocar inputs aqui e ver se precisa por o titulo -->
             </form>

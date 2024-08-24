@@ -117,10 +117,22 @@ footer button {
     border-radius: .25em;
 }
 
-.page-card > h3 {
+.card-title {
     border-bottom: 1px solid var(--white-transparency);
     margin-bottom: .5em;
     padding-bottom: .15em;
+}
+
+.page-list {
+    list-style: none inside;
+}
+
+.page-list li {
+    margin: .25em;
+}
+
+.ct-flag {
+    display: none;
 }
 
 #portfolio {
@@ -151,5 +163,9 @@ textarea {
 
     .header-section {
         margin: .25em 0;
+    }
+
+    .ct-flag {
+        display: initial;
     }
 }
