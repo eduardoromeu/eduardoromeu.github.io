@@ -1,13 +1,22 @@
+/* Define variaveis para o degradê do fundo da pagina e uma cor bastante usada */
 :root {
     --bg-gradient: radial-gradient(circle 815px at 23.4% -21.8%,  rgba(9,29,85,1) 0.2%, rgba(0,0,8,1) 150.2% );
     --white-transparency: rgba(255, 255, 255, .12);
 }
 
+/* Reseta o estilo padrão de alguns elementos */
 html, body, p, h1, h2, h3, h4, h5, h6, ul {
     margin: 0;
     padding: 0;
 }
 
+/* Reset para o estilo dos links */
+a {
+    text-decoration: none;
+    color: white;
+}
+
+/* Assegura que a página ficara dentro da viewport e define a fonte */
 html {
     min-height: 100vh;
     max-width: 100vw;
@@ -15,20 +24,16 @@ html {
     font-family: "Rubik", sans-serif;
 }
 
+/* Define o fundo do site e cor padrão do texto */
 body {
-    color-scheme: light dark;
+    color-scheme: dark; /* Indica que o site utiliza um tema escuro */
     background-color: Canvas;
     background-image: var(--bg-gradient);
     color: white;
 }
 
-a {
-    text-decoration: none;
-    color: white;
-}
-
+/* Estilo do rodapé */
 footer {
-    width: 100%;
     min-height: 32px;
     padding: .5em;
     display: flex;
@@ -38,6 +43,7 @@ footer {
     border-top: 1px solid var(--white-transparency);
 }
 
+/* Estilo dos links usados em meio aos textos */
 .text-link {
     color: lightskyblue;
     background-color: transparent;
@@ -50,21 +56,29 @@ footer {
     border-bottom: 1px solid lightblue;
 }
 
+/* Cabeçalho */
 .page-header {
     min-height: 64px;
     min-width: 100vw;
     margin-bottom: .5em;
-    position: sticky;
+    
+    /* Faz o cabeçalho ficar sempre no topo */
+    position: sticky; 
     top: 0;
+
+    /* Flexbox para o posicionamento dos itens e responsividade */
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
+
+    /* Visual */
     background-color: var(--white-transparency);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--white-transparency);
 }
 
+/* Subdivisão do cabeçalho */
 .header-section {
     display: flex;
     align-items: center;
@@ -72,10 +86,12 @@ footer {
     margin: .25em 1em;
 }
 
+/* Visual do título */
 .page-title {
     font-weight: lighter;
 }
 
+/* Links do cabeçalho */
 .page-links {
     text-wrap: nowrap;
     display: flex;
@@ -103,10 +119,12 @@ footer {
     background-color: var(--white-transparency);
 }
 
+/* Seções principais da página */
 .main-section {
     margin: 1.25em;
 }
 
+/* Estilo para as sections */
 .page-card {
     padding: 1.25em;
     background-color: var(--white-transparency);
@@ -121,6 +139,8 @@ footer {
 }
 
 .page-list {
+    /* Faz a lista considerar o marcador no tamanho do elemento */
+    /* Também retira o marcador padrão */
     list-style: none inside;
 }
 
@@ -129,10 +149,13 @@ footer {
 }
 
 .ct-flag {
+    /* Esconde emojis das bandeiras, pois não são exibidos no computador */
     display: none;
 }
 
+/* Seção com cards para os projetos do portfólio */
 #portfolio {
+    /* Usa o grid layout para organizar os cards */
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(20px, 1fr));
     gap: 1.25em;
@@ -148,6 +171,7 @@ footer {
 }
 
 .project-card * {
+    /* Define a animaçãod de transição para o card */
     transition: .25s all;
 }
 
@@ -158,6 +182,7 @@ footer {
     border-bottom: 1px solid transparent;
 }
 
+/* Imagem de um card do portfolio */
 .card-image {
     height: 175px;
     overflow: hidden;
@@ -171,6 +196,7 @@ footer {
 }
 
 .project-card:hover {
+    /* Efeito de brilho */
     filter: drop-shadow(0 0 1.25em var(--white-transparency));
 }
 
@@ -178,18 +204,20 @@ footer {
     border-bottom: 1px solid var(--white-transparency);
 }
 
+/* Faz o efeito de zoom nas imagens dos cards */
 .project-card:hover .card-image img, .project-card:hover .card-image object {
     transform: scale(1.2);
 }
 
-/* Estilo do formulário de contato */
 
+/* Estilo do formulário de contato */
 .contact-form {
     display: flex;
     flex-direction: column;
 }
 
 .contact-form button {
+    /* Muda o cursor do mouse */
     cursor: pointer;
 }
 
@@ -206,14 +234,17 @@ footer {
     font-weight: bolder;
 }
 
+/* Ajuda a indicar que o conteúdo inserido é inválido */
 .contact-input:user-invalid {
     border-color: rgba(255, 0, 0, 0.65);
 }
 
 textarea {
+    /* Não permite mudar o tamanho da textarea */
     resize: none;
 }
 
+/* Ajusta a grid da seção portfólio para telas menores */
 @media only screen and (max-width: 768px) {
     #portfolio {
         grid-template-columns: initial;
@@ -221,6 +252,7 @@ textarea {
     }
 }
 
+/* Evita que o cabeçalho fique muito grande em telas pequenas */
 @media only screen and (max-width: 480px) {
     .page-link {
         list-style: none;
