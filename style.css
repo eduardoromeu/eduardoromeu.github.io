@@ -32,6 +32,11 @@ body {
     color: white;
 }
 
+iframe {
+    border: .15em solid white;
+    border-radius: 12px;
+}
+
 /* Estilo do rodapé */
 footer {
     min-height: 32px;
@@ -211,6 +216,13 @@ footer {
 
 
 /* Estilo do formulário de contato */
+#contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .contact-form {
     display: flex;
     flex-direction: column;
